@@ -2,7 +2,8 @@
 <configuration debug="false">
 
     <!--<property name="log.base" value="${log_dir}/" />-->
-    <property name="log.base" value="D:/logs/" /><!--配置日志输出路径（测试配置）-->
+    <property name="logFile" value="D:/logs" /><!--配置日志输出路径-->
+    <property name="appName" value="app" /><!--配置日志输出路径-->
 
     <!-- 控制台输出 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
@@ -17,7 +18,7 @@
         <Prudent>true</Prudent>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--日志文件输出的文件名 -->
-            <FileNamePattern>${log.base}ERROR-%d{yyyy-MM-dd}.log</FileNamePattern>
+            <FileNamePattern>${logFile}/${appName}/ERROR-%d{yyyy-MM-dd}.log</FileNamePattern>
             <!--日志文件保留天数 -->
             <MaxHistory>5</MaxHistory>
         </rollingPolicy>
@@ -38,7 +39,7 @@
         <Prudent>true</Prudent>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--日志文件输出的文件名 -->
-            <FileNamePattern>${log.base}WARN-%d{yyyy-MM-dd}.log</FileNamePattern>
+            <FileNamePattern>${logFile}/${appName}/WARN-%d{yyyy-MM-dd}.log</FileNamePattern>
             <!--日志文件保留天数 -->
             <MaxHistory>5</MaxHistory>
         </rollingPolicy>
@@ -59,7 +60,7 @@
         <Prudent>true</Prudent>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--日志文件输出的文件名 -->
-            <FileNamePattern>${log.base}INFO-%d{yyyy-MM-dd}.log</FileNamePattern>
+            <FileNamePattern>${logFile}/${appName}/INFO-%d{yyyy-MM-dd}.log</FileNamePattern>
             <!--日志文件保留天数 -->
             <MaxHistory>5</MaxHistory>
         </rollingPolicy>
@@ -80,7 +81,7 @@
         <Prudent>true</Prudent>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--日志文件输出的文件名 -->
-            <FileNamePattern>${log.base}DEBUG-%d{yyyy-MM-dd}.log</FileNamePattern>
+            <FileNamePattern>${logFile}/${appName}/DEBUG-%d{yyyy-MM-dd}.log</FileNamePattern>
             <!--日志文件保留天数 -->
             <MaxHistory>5</MaxHistory>
         </rollingPolicy>
@@ -97,7 +98,7 @@
     </appender>
 
     <!-- 日志输出级别 -->
-    <root level="DEBUG">
+    <root level="INFO">
         <appender-ref ref="STDOUT" />
         <!--        <appender-ref ref="ERROR-FILE" />-->
         <!--        <appender-ref ref="WARN-FILE" />-->
