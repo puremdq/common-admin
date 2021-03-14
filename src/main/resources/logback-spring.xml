@@ -2,8 +2,8 @@
 <configuration debug="false">
 
     <!--<property name="log.base" value="${log_dir}/" />-->
-    <property name="logFile" value="D:/logs" /><!--配置日志输出路径-->
-    <property name="appName" value="app" /><!--配置日志输出路径-->
+    <property name="logFile" value="D:/logs"/><!--配置日志输出路径-->
+    <property name="appName" value="app"/><!--配置日志输出路径-->
 
     <!-- 控制台输出 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
@@ -99,7 +99,7 @@
 
     <!-- 日志输出级别 -->
     <root level="INFO">
-        <appender-ref ref="STDOUT" />
+        <appender-ref ref="STDOUT"/>
         <!--        <appender-ref ref="ERROR-FILE" />-->
         <!--        <appender-ref ref="WARN-FILE" />-->
         <!--        <appender-ref ref="INFO-FILE" />-->

@@ -1,0 +1,10 @@
+package com.aojiaoo.admin.mapper;
+
+    import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.aojiaoo.admin.entity.Menu;
+
+public interface MenuMapper extends BaseMapper<Menu> {
+
+
+
+}

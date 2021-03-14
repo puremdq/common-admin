@@ -1,0 +1,16 @@
+server:
+  port: 8180
+  servlet:
+    session:
+      cookie:
+        name: dajiji
+      timeout: 1800 #单位秒
+spring:
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 200MB
+  datasource:
+    url: jdbc:mysql://localhost:3306/admin_common?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password:

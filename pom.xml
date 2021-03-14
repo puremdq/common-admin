@@ -10,11 +10,12 @@
 	</parent>
 	<groupId>com.aojiaoo</groupId>
 	<artifactId>common-admin</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>common-admin</name>
 	<description>common-admin</description>
 	<properties>
 		<java.version>11</java.version>
+		<aojiaoo.version>1.0.0-SNAPSHOT</aojiaoo.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -23,8 +24,14 @@
 		</dependency>
 		<dependency>
 			<groupId>com.aojiaoo</groupId>
-			<artifactId>aojiaoo-util</artifactId>
-			<version>1.0.0</version>
+			<artifactId>aojiaoo-common</artifactId>
+			<version>${aojiaoo.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.aojiaoo</groupId>
+			<artifactId>aojiaoo-generator</artifactId>
+			<version>${aojiaoo.version}</version>
 		</dependency>
 
 		<dependency>
@@ -58,6 +65,11 @@
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus-boot-starter</artifactId>
 			<version>3.4.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 
 
