@@ -3,16 +3,17 @@
 <mapper namespace="com.aojiaoo.admin.mapper.MenuMapper">
 
 
-
     <sql id="Base_Column_List">
-            a.id as id,a.name as name,a.parent_id as parentId,a.is_show as isShow,a.url as url,a.icon as icon,a.create_time as createTime,a.update_time as updateTime,a.create_by as createBy,a.update_by as updateBy,a.is_delete as isDelete,a.version as version
+        a
+        .
+        id
+        as id,a.name as name,a.parent_id as parentId,a.is_show as isShow,a.url as url,a.icon as icon,a.create_time as createTime,a.update_time as updateTime,a.create_by as createBy,a.update_by as updateBy,a.is_delete as isDelete,a.version as version
     </sql>
 
     <sql id="Base_select_table">
-        menu a
+        menu
+        a
     </sql>
-
-
 
 
 </mapper>

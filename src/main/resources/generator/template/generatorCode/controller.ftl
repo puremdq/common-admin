@@ -21,29 +21,29 @@ private ${serviceClassName} ${serviceName};
 @RequestMapping("")
 public ServerResponse
 <Page${r'<'}${entityName}>> list(Page<${entityName}> page, ${entityName} ${entityName?uncap_first}) {
-${serviceName}.findPage(page, ${entityName?uncap_first});
-return ServerResponse.createSuccessWithDta(page);
-}
+    ${serviceName}.findPage(page, ${entityName?uncap_first});
+    return ServerResponse.createSuccessWithDta(page);
+    }
 
-@RequestMapping("form")
-public ServerResponse<${entityName}> edit(${entityName} ${entityName?uncap_first}) {
-if (${entityName?uncap_first}.getId() != null) {
-${entityName?uncap_first} = ${serviceName}.get(${entityName?uncap_first}.getId());
-}
+    @RequestMapping("form")
+    public ServerResponse<${entityName}> edit(${entityName} ${entityName?uncap_first}) {
+    if (${entityName?uncap_first}.getId() != null) {
+    ${entityName?uncap_first} = ${serviceName}.get(${entityName?uncap_first}.getId());
+    }
 
-return ServerResponse.createSuccessWithDta(${entityName?uncap_first});
-}
+    return ServerResponse.createSuccessWithDta(${entityName?uncap_first});
+    }
 
-@RequestMapping("delete")
-public ServerResponse delete(Long id) {
-this.${serviceName}.delete(id);
-return ServerResponse.createSuccess();
-}
+    @RequestMapping("delete")
+    public ServerResponse delete(Long id) {
+    this.${serviceName}.delete(id);
+    return ServerResponse.createSuccess();
+    }
 
-@RequestMapping("save")
-public ServerResponse save(${entityName} ${entityName?uncap_first}) {
-${serviceName}.save(${entityName?uncap_first});
-return ServerResponse.createSuccess();
-}
+    @RequestMapping("save")
+    public ServerResponse save(${entityName} ${entityName?uncap_first}) {
+    ${serviceName}.save(${entityName?uncap_first});
+    return ServerResponse.createSuccess();
+    }
 
-}
+    }

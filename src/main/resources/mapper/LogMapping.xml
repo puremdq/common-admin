@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aojiaoo.admin.mapper.LogMapper">
+
+
+    <sql id="Base_Column_List">
+        a
+        .
+        id
+        as id,a.ip as ip,a.request as request,a.params as params,a.result as result,a.time_cost as timeCost,a.create_time as createTime,a.update_time as updateTime,a.create_by as createBy,a.update_by as updateBy,a.is_delete as isDelete,a.version as version
+    </sql>
+
+    <sql id="Base_select_table">
+        log
+        a
+    </sql>
+
+
+</mapper>

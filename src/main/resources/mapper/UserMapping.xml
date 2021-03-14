@@ -3,16 +3,16 @@
 <mapper namespace="com.aojiaoo.admin.mapper.UserMapper">
 
 
-
     <sql id="Base_Column_List">
-            a.id as id,a.user_name as userName,a.name as name,a.password as password,a.salt as salt,a.create_time as createTime,a.update_time as updateTime,a.create_by as createBy,a.update_by as updateBy,a.is_delete as isDelete,a.version as version
+        a
+        .
+        id
+        as id,a.user_name as userName,a.name as name,a.password as password,a.salt as salt,a.create_time as createTime,a.update_time as updateTime,a.create_by as createBy,a.update_by as updateBy,a.is_delete as isDelete,a.version as version
     </sql>
 
     <sql id="Base_select_table">
         user a
     </sql>
-
-
 
 
 </mapper>

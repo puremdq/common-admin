@@ -3,16 +3,17 @@
 <mapper namespace="com.aojiaoo.admin.mapper.RoleMenuMapper">
 
 
-
     <sql id="Base_Column_List">
-            a.id as id,a.role_id as roleId,a.rmenu_id as rmenuId,a.create_time as createTime,a.update_time as updateTime,a.create_by as createBy,a.update_by as updateBy,a.is_delete as isDelete,a.version as version
+        a
+        .
+        id
+        as id,a.role_id as roleId,a.rmenu_id as rmenuId,a.create_time as createTime,a.update_time as updateTime,a.create_by as createBy,a.update_by as updateBy,a.is_delete as isDelete,a.version as version
     </sql>
 
     <sql id="Base_select_table">
-        role_menu a
+        role_menu
+        a
     </sql>
-
-
 
 
 </mapper>

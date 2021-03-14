@@ -1,7 +1,7 @@
 package com.aojiaoo.admin.controller;
 
-import com.aojiaoo.admin.entity.Menu;
-import com.aojiaoo.admin.service.IMenuService;
+import com.aojiaoo.admin.entity.Log;
+import com.aojiaoo.admin.service.ILogService;
 import com.aojiaoo.common.response.ServerResponse;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,36 +9,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/menu")
-public class MenuController {
+@RequestMapping("/log")
+public class LogController {
     @Autowired
-    private IMenuService menuService;
+    private ILogService logService;
 
     @RequestMapping("")
     public ServerResponse
-            <Page<Menu>> list(Page<Menu> page, Menu menu) {
-        menuService.findPage(page, menu);
+            <Page<Log>> list(Page<Log> page, Log log) {
+        logService.findPage(page, log);
         return ServerResponse.createSuccessWithDta(page);
     }
 
     @RequestMapping("form")
-    public ServerResponse<Menu> edit(Menu menu) {
-        if (menu.getId() != null) {
-            menu = menuService.get(menu.getId());
+    public ServerResponse<Log> edit(Log log) {
+        if (log.getId() != null) {
+            log = logService.get(log.getId());
         }
 
-        return ServerResponse.createSuccessWithDta(menu);
+        return ServerResponse.createSuccessWithDta(log);
     }
 
     @RequestMapping("delete")
     public ServerResponse delete(Long id) {
-        this.menuService.delete(id);
+        this.logService.delete(id);
         return ServerResponse.createSuccess();
     }
 
     @RequestMapping("save")
-    public ServerResponse save(Menu menu) {
-        menuService.save(menu);
+    public ServerResponse save(Log log) {
+        logService.save(log);
         return ServerResponse.createSuccess();
     }
 

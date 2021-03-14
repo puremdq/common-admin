@@ -1,9 +1,9 @@
 package com.aojiaoo.admin.mapper;
 
-import com.aojiaoo.admin.entity.Menu;
+import com.aojiaoo.admin.entity.Log;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
-public interface MenuMapper extends BaseMapper<Menu> {
+public interface LogMapper extends BaseMapper<Log> {
 
 
 }
