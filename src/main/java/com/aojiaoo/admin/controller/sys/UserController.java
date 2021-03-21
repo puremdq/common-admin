@@ -1,7 +1,7 @@
-package com.aojiaoo.admin.controller;
+package com.aojiaoo.admin.controller.sys;
 
-import com.aojiaoo.admin.entity.Menu;
-import com.aojiaoo.admin.service.IMenuService;
+import com.aojiaoo.admin.entity.sys.User;
+import com.aojiaoo.admin.service.sys.UserService;
 import com.aojiaoo.common.response.ServerResponse;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,36 +9,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/menu")
-public class MenuController {
+@RequestMapping("/user")
+public class UserController {
+
     @Autowired
-    private IMenuService menuService;
+    private UserService userService;
 
     @RequestMapping("")
     public ServerResponse
-            <Page<Menu>> list(Page<Menu> page, Menu menu) {
-        menuService.findPage(page, menu);
+            <Page<User>> list(Page<User> page, User user) {
+        userService.findPage(page, user);
         return ServerResponse.createSuccessWithDta(page);
     }
 
     @RequestMapping("form")
-    public ServerResponse<Menu> edit(Menu menu) {
-        if (menu.getId() != null) {
-            menu = menuService.get(menu.getId());
+    public ServerResponse<User> edit(User user) {
+        if (user.getId() != null) {
+            user = userService.get(user.getId());
         }
 
-        return ServerResponse.createSuccessWithDta(menu);
+        return ServerResponse.createSuccessWithDta(user);
     }
 
     @RequestMapping("delete")
     public ServerResponse delete(Long id) {
-        this.menuService.delete(id);
+        this.userService.delete(id);
         return ServerResponse.createSuccess();
     }
 
     @RequestMapping("save")
-    public ServerResponse save(Menu menu) {
-        menuService.save(menu);
+    public ServerResponse save(User user) {
+        userService.save(user);
         return ServerResponse.createSuccess();
     }
 

@@ -1,7 +1,7 @@
-package com.aojiaoo.admin.controller;
+package com.aojiaoo.admin.controller.sys;
 
-import com.aojiaoo.admin.entity.User;
-import com.aojiaoo.admin.service.IUserService;
+import com.aojiaoo.admin.entity.sys.Menu;
+import com.aojiaoo.admin.service.sys.MenuService;
 import com.aojiaoo.common.response.ServerResponse;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,36 +9,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/menu")
+public class MenuController {
     @Autowired
-    private IUserService userService;
+    private MenuService menuService;
 
     @RequestMapping("")
     public ServerResponse
-            <Page<User>> list(Page<User> page, User user) {
-        userService.findPage(page, user);
+            <Page<Menu>> list(Page<Menu> page, Menu menu) {
+        menuService.findPage(page, menu);
         return ServerResponse.createSuccessWithDta(page);
     }
 
     @RequestMapping("form")
-    public ServerResponse<User> edit(User user) {
-        if (user.getId() != null) {
-            user = userService.get(user.getId());
+    public ServerResponse<Menu> edit(Menu menu) {
+        if (menu.getId() != null) {
+            menu = menuService.get(menu.getId());
         }
 
-        return ServerResponse.createSuccessWithDta(user);
+        return ServerResponse.createSuccessWithDta(menu);
     }
 
     @RequestMapping("delete")
     public ServerResponse delete(Long id) {
-        this.userService.delete(id);
+        this.menuService.delete(id);
         return ServerResponse.createSuccess();
     }
 
     @RequestMapping("save")
-    public ServerResponse save(User user) {
-        userService.save(user);
+    public ServerResponse save(Menu menu) {
+        menuService.save(menu);
         return ServerResponse.createSuccess();
     }
 

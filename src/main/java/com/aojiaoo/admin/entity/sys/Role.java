@@ -1,4 +1,4 @@
-package com.aojiaoo.admin.entity;
+package com.aojiaoo.admin.entity.sys;
 
 import com.aojiaoo.common.base.BaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@TableName("role")
+@TableName("sys_role")
 public class Role extends BaseEntity<Role> {
 
     private static final long serialVersionUID = 1L;
@@ -17,7 +17,7 @@ public class Role extends BaseEntity<Role> {
     }
 
     /**
-     * 表字段： role.name
+     * 表字段： sys_role.name
      */
     @TableField(value = "name")
     private String name;

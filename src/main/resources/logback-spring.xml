@@ -106,5 +106,11 @@
         <!--        <appender-ref ref="DEBUG-FILE" />-->
     </root>
 
+    　
+    <logger name="com.aojiaoo" level="debug">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+
 </configuration>
 

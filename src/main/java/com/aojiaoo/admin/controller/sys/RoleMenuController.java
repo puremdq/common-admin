@@ -1,7 +1,7 @@
-package com.aojiaoo.admin.controller;
+package com.aojiaoo.admin.controller.sys;
 
-import com.aojiaoo.admin.entity.RoleMenu;
-import com.aojiaoo.admin.service.IRoleMenuService;
+import com.aojiaoo.admin.entity.sys.RoleMenu;
+import com.aojiaoo.admin.service.sys.RoleMenuService;
 import com.aojiaoo.common.response.ServerResponse;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/roleMenu")
 public class RoleMenuController {
+
     @Autowired
-    private IRoleMenuService roleMenuService;
+    private RoleMenuService roleMenuService;
 
     @RequestMapping("")
     public ServerResponse

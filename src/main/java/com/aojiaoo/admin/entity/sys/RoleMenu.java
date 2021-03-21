@@ -1,4 +1,4 @@
-package com.aojiaoo.admin.entity;
+package com.aojiaoo.admin.entity.sys;
 
 import com.aojiaoo.common.base.BaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@TableName("role_menu")
+@TableName("sys_role_menu")
 public class RoleMenu extends BaseEntity<RoleMenu> {
 
     private static final long serialVersionUID = 1L;
@@ -21,12 +21,12 @@ public class RoleMenu extends BaseEntity<RoleMenu> {
     }
 
     /**
-     * 表字段： role_menu.role_id
+     * 表字段： sys_role_menu.role_id
      */
     @TableField(value = "role_id")
     private Integer roleId;
     /**
-     * 表字段： role_menu.rmenu_id
+     * 表字段： sys_role_menu.rmenu_id
      */
     @TableField(value = "rmenu_id")
     private Integer rmenuId;
