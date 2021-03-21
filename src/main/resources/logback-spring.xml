@@ -109,6 +109,7 @@
     　
     <logger name="com.aojiaoo" level="debug">
         <appender-ref ref="STDOUT"/>
+        <appender-ref ref="ERROR-FILE"/>
     </logger>
 
 
