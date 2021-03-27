@@ -107,7 +107,7 @@
     </root>
 
     　
-    <logger name="com.aojiaoo" level="debug">
+    <logger name="com.aojiaoo" level="INFO">
         <appender-ref ref="STDOUT"/>
     </logger>
 

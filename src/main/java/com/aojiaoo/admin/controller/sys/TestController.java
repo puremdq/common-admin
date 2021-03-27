@@ -39,4 +39,15 @@ public class TestController {
         return s;
     }
 
+
+    @RequestMapping("/test")
+    public String test(HttpServletRequest httpServletRequest) {
+        httpServletRequest.getSession().setAttribute("s", "sds");
+        return null;
+    }
+
+    @RequestMapping("/test1")
+    public Object test1(HttpServletRequest httpServletRequest) {
+        return httpServletRequest.getSession().getAttribute("s" );
+    }
 }

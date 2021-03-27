@@ -3,7 +3,7 @@ server:
   servlet:
     session:
       cookie:
-        name: dajiji
+        name: common-admin
       timeout: 1800 #单位秒
 spring:
   servlet:
@@ -15,10 +15,12 @@ spring:
     username: root
     password:
 
-  redis:
-    host: localhost
-    port: 6379
-    password:
-  session:
-    store-type: redis
-
+redis:
+  host: localhost
+  port: 6379
+  # 密码（默认为空）
+  password:
+  maxIdle: 10
+  minIdle: 5
+  timeout: 1000
+  dbs: 0,1,2,3,4,5,6,7,8,8,10,11,12,13,14,15      # 可以指定多个，用“,”隔开，写在第一个的为defaultDB
