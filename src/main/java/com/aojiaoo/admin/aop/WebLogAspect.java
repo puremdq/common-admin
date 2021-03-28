@@ -26,7 +26,10 @@ public class WebLogAspect {
     @Autowired
     private LogService logService;
 
-    //签名，可以理解成这个切入点的一个名称
+
+    /**
+     * 签名，可以理解成这个切入点的一个名称
+     */
     @Pointcut("execution(public * com.aojiaoo.admin.controller..*.*(..))")//切入点描述 这个是controller包的切入点
     public void controllerCut() {
     }
@@ -36,7 +39,11 @@ public class WebLogAspect {
     public Object doAround(ProceedingJoinPoint point) throws Throwable {
         long start = System.currentTimeMillis();
         RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
-        HttpServletRequest request = ((ServletRequestAttributes) requestAttributes).getRequest();
+
+        HttpServletRequest request = null;
+        if (requestAttributes instanceof ServletRequestAttributes) {
+            request = ((ServletRequestAttributes) requestAttributes).getRequest();
+        }
         Object[] args = point.getArgs();
         Object result = null;
         try {
@@ -46,7 +53,11 @@ public class WebLogAspect {
             result = e.toString();
             throw e;
         } finally {
-            logService.insertLog(request, args, result, System.currentTimeMillis() - start);
+            if (request != null) {
+                logService.insertLog(request, args, result, System.currentTimeMillis() - start);
+            } else {
+                log.error("遇到未知的情况，当成请求为空");
+            }
         }
     }
 
