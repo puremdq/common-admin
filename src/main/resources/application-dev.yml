@@ -1,5 +1,5 @@
 server:
-  port: 8180
+  port: 8080
   servlet:
     session:
       cookie:
@@ -24,3 +24,7 @@ redis:
   minIdle: 5
   timeout: 1000
   dbs: 0,1,2,3,4,5,6,7,8,8,10,11,12,13,14,15      # 可以指定多个，用“,”隔开，写在第一个的为defaultDB
+
+login:
+  loginPath: /login
+  logoutPath: /logout

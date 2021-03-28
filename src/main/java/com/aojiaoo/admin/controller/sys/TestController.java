@@ -19,7 +19,7 @@ public class TestController {
                 "  {\n" +
                 "    \"path\": \"/dashboard\",\n" +
                 "    \"name\": \"dashboard111\",\n" +
-                "    \"icon\": \"11\",\n" +
+                "    \"icon\": \"HomeOutlined\",\n" +
                 "    \"children\": [\n" +
                 "      {\n" +
                 "        \"path\": \"/dashboard/analysis\",\n" +
