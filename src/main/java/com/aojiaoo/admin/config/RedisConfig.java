@@ -69,7 +69,7 @@ public class RedisConfig {
     /**
      * 连接池配置信息
      *
-     * @return
+     * @return JedisPoolConfig
      */
     public JedisPoolConfig jedisPoolConfig() {
         JedisPoolConfig poolConfig = new JedisPoolConfig();
@@ -91,8 +91,8 @@ public class RedisConfig {
     /**
      * jedis连接工厂
      *
-     * @param jedisPoolConfig
-     * @return
+     * @param jedisPoolConfig jedisPoolConfig
+     * @return RedisConnectionFactory
      */
     public RedisConnectionFactory redisConnectionFactory(JedisPoolConfig jedisPoolConfig, int db) {
         // 单机版jedis
