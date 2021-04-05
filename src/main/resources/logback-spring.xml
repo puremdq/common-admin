@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="false">
 
+
     <!--<property name="log.base" value="${log_dir}/" />-->
     <property name="logFile" value="D:/logs"/><!--配置日志输出路径-->
     <property name="appName" value="app"/><!--配置日志输出路径-->
@@ -27,6 +28,15 @@
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n
             </pattern>
         </encoder>
+
+        <!--
+            LevelFilter： 级别过滤器，根据日志级别进行过滤。如果日志级别等于配置级别，过滤器会根据onMath 和 onMismatch接收或拒绝日志。有以下子节点：
+            <level>:设置过滤级别
+            <onMatch>:用于配置符合过滤条件的操作
+            <onMismatch>:用于配置不符合过滤条件的操作
+            ThresholdFilter： 临界值过滤器，过滤掉低于指定临界值的日志。当日志级别等于或高于临界值时，过滤器返回NEUTRAL；当日志级别低于临界值时，日志会被拒绝。
+            例如：过滤掉所有低于INFO级别的日志。
+        -->
         <filter class="ch.qos.logback.classic.filter.LevelFilter"><!-- 只打印错误日志 -->
             <level>ERROR</level>
             <onMatch>ACCEPT</onMatch>
@@ -107,11 +117,7 @@
     </root>
 
     　
-    <logger name="com.aojiaoo" level="INFO">
-        <appender-ref ref="STDOUT"/>
-    </logger>
-
-    <logger name="com.aojiaoo" level="ERROR">
+    <logger name="com.aojiaoo" level="DEBUG">
         <appender-ref ref="ERROR-FILE"/>
     </logger>
 
