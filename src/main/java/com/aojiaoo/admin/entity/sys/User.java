@@ -3,11 +3,12 @@ package com.aojiaoo.admin.entity.sys;
 import com.aojiaoo.common.base.BaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
+@Builder
+@AllArgsConstructor
 @TableName("sys_user")
 public class User extends BaseEntity<User> {
 
@@ -16,9 +17,6 @@ public class User extends BaseEntity<User> {
     public User() {
     }
 
-    public User(Integer id) {
-        this.id = id;
-    }
 
     /**
      * 表字段： sys_user.user_name
