@@ -45,7 +45,7 @@
             <groupId>com.aojiaoo</groupId>
             <artifactId>aojiaoo-generator</artifactId>
             <version>${aojiaoo.version}</version>
-            <scope>provided</scope>
+<!--            <scope>provided</scope>-->
         </dependency>
 
         <!--start spring-session-->
