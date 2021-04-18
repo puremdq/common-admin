@@ -44,4 +44,5 @@ public interface PermissionHandler {
         return getCurrentUser(request) != null;
     }
 
+
 }

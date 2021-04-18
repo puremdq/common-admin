@@ -49,6 +49,7 @@ public class LoginInterceptor<T extends PermissionHandler> implements HandlerInt
 
         CurrentUser currentUser = permissionHandler.getCurrentUser(request);
         if (currentUser != null) {
+            PermissionHolder.setCurrentUser(currentUser);
             return true;
         }
 

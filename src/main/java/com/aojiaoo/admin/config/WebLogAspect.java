@@ -1,5 +1,6 @@
-package com.aojiaoo.admin.aop;
+package com.aojiaoo.admin.config;
 
+import com.aojiaoo.admin.common.enums.LogType;
 import com.aojiaoo.admin.service.sys.LogService;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -54,9 +55,9 @@ public class WebLogAspect {
             throw e;
         } finally {
             if (request != null) {
-                logService.insertLog(request, args, result, System.currentTimeMillis() - start);
+                logService.insertLog(request, LogType.BUSINESS, result, System.currentTimeMillis() - start);
             } else {
-                log.error("遇到未知的情况，当成请求为空");
+                log.error("遇到未知的情况，当前请求为空");
             }
         }
     }

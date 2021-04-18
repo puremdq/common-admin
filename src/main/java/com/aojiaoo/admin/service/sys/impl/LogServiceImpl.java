@@ -1,5 +1,6 @@
 package com.aojiaoo.admin.service.sys.impl;
 
+import com.aojiaoo.admin.common.enums.LogType;
 import com.aojiaoo.admin.entity.sys.Log;
 import com.aojiaoo.admin.mapper.sys.LogMapper;
 import com.aojiaoo.admin.service.BaseService;
@@ -16,19 +17,17 @@ import javax.servlet.http.HttpServletRequest;
 @Service
 public class LogServiceImpl extends BaseService<Log, LogMapper> implements LogService {
 
-
     @Async
     @Override
-    public void insertLog(HttpServletRequest request, Object[] args, Object result, long timeCost) {
+    public void insertLog(HttpServletRequest request, LogType logType,  Object result, long timeCost) {
         Log sysLog = new Log();
         sysLog.setIp(request.getRemoteAddr());
-        sysLog.setHttpMethod(request.getRemoteAddr());
+        sysLog.setHttpMethod(request.getMethod());
+        sysLog.setLogType(logType.getType());
         sysLog.setParams(JsonUtil.toJsonString(request.getParameterMap()));
         sysLog.setResult(JsonUtil.toJsonString(result));
         sysLog.setTimeCost(timeCost);
         this.insert(sysLog);
     }
-
-
 
 }

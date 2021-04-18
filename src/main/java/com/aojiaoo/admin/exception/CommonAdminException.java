@@ -13,6 +13,7 @@ public class CommonAdminException extends RuntimeException {
     protected CommonResponseMsg responseMsg;
 
     public CommonAdminException(CommonResponseMsg responseMsg) {
+        super("code:" + responseMsg.getCode() + ", msg:" + responseMsg.getMsg());
         this.responseMsg = responseMsg;
     }
 

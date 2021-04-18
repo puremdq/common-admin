@@ -1,7 +1,7 @@
 package com.aojiaoo.admin.service;
 
 import com.aojiaoo.admin.permission.CurrentUser;
-import com.aojiaoo.admin.permission.PermissionUtil;
+import com.aojiaoo.admin.permission.PermissionHolder;
 import com.aojiaoo.common.base.BaseEntity;
 import com.aojiaoo.common.constant.ConstProperties;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -14,7 +14,7 @@ public class BaseService<E extends BaseEntity<E>, M extends BaseMapper<E>> exten
 
     @Override
     public String getCurrentUser() {
-        CurrentUser currentUser = PermissionUtil.getCurrentUser();
+        CurrentUser currentUser = PermissionHolder.getCurrentUser();
         return currentUser == null ? ConstProperties.SYSTEM_USER : currentUser.getUsername();
     }
 }

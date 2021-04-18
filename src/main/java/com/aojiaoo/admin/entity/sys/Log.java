@@ -6,6 +6,9 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * @author puremdq
+ */
 @EqualsAndHashCode(callSuper = true)
 @Data
 @TableName("sys_log")
@@ -34,6 +37,12 @@ public class Log extends BaseEntity<Log> {
      */
     @TableField(value = "http_method")
     private String httpMethod;
+    /**
+     * 日志类型 {@link com.aojiaoo.admin.common.enums.LogType}
+     * 表字段： sys_log.log_type
+     */
+    @TableField(value = "log_type")
+    private String logType;
 
     /**
      * 请求参数
