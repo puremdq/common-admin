@@ -1,7 +1,9 @@
-package com.aojiaoo.admin.common;
+package com.aojiaoo.admin.config.login;
 
+import com.aojiaoo.admin.common.ResponseMsg;
 import com.aojiaoo.admin.common.enums.LogType;
 import com.aojiaoo.admin.entity.sys.User;
+import com.aojiaoo.admin.entity.sys.UserRole;
 import com.aojiaoo.admin.exception.CommonAdminException;
 import com.aojiaoo.admin.permission.CurrentUser;
 import com.aojiaoo.admin.permission.PermissionHandler;
@@ -19,6 +21,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author pure
@@ -50,12 +55,19 @@ public class DefaultPermissionHandler implements PermissionHandler {
             recordLoginLog(request, LogType.LOG_IN, userName, false, startTime);
             throw new CommonAdminException(ResponseMsg.ILLEGAL_PASSWORD);
         }
-        User user = userService.get(User.builder().userName(userName).build());
-        CurrentUser currentUser = CurrentUser.builder().username(user.getUserName()).realName(user.getName()).build();
-        request.getSession().setAttribute(CURRENT_USER_SESSION_KEY, currentUser);
+
+        request.getSession().setAttribute(CURRENT_USER_SESSION_KEY, buildCurrentUser(userName));
         recordLoginLog(request, LogType.LOG_IN, userName, true, startTime);
 
         WebUtils.writeBody(response.getWriter(), JsonUtil.toJsonString(ServerResponse.createSuccess()));
+    }
+
+    private CurrentUser buildCurrentUser(String userName) {
+        User user = userService.get(User.builder().userName(userName).build());
+        List<UserRole> roleList = userService.getRoleList(user.getUserName());
+        roleList = roleList == null ? new ArrayList<>() : roleList;
+        List<String> collect = roleList.stream().map(UserRole::getRoleEnName).collect(Collectors.toList());
+        return CurrentUser.builder().username(user.getUserName()).realName(user.getName()).role(collect).build();
     }
 
     @Override

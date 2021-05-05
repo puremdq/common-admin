@@ -1,7 +1,6 @@
-package com.aojiaoo.admin.config;
+package com.aojiaoo.admin.config.login;
 
 
-import com.aojiaoo.admin.common.DefaultPermissionHandler;
 import com.aojiaoo.admin.permission.LoginInterceptor;
 import com.aojiaoo.admin.permission.PermissionProperties;
 import org.springframework.context.annotation.Configuration;
