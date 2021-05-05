@@ -48,6 +48,6 @@ public class TestController {
 
     @RequestMapping("/test1")
     public Object test1(HttpServletRequest httpServletRequest) {
-        return httpServletRequest.getSession().getAttribute("s" );
+        return httpServletRequest.getSession().getAttribute("s");
     }
 }

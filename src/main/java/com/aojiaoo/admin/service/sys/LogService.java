@@ -19,6 +19,6 @@ public interface LogService extends IService<Log, LogMapper> {
      * @param result   结果
      * @param timeCost 时间消耗
      */
-    void insertLog(HttpServletRequest request, LogType logType,  Object result, long timeCost);
+    void insertLog(HttpServletRequest request, LogType logType, Object result, long timeCost);
 
 }
