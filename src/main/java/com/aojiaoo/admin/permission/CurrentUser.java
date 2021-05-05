@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author pure
@@ -28,5 +29,5 @@ public class CurrentUser implements Serializable {
     /**
      * 权限
      */
-    private String access;
+    private List<String> role;
 }

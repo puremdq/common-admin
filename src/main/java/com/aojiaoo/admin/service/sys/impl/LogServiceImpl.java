@@ -19,7 +19,7 @@ public class LogServiceImpl extends BaseService<Log, LogMapper> implements LogSe
 
     @Async
     @Override
-    public void insertLog(HttpServletRequest request, LogType logType,  Object result, long timeCost) {
+    public void insertLog(HttpServletRequest request, LogType logType, Object result, long timeCost) {
         Log sysLog = new Log();
         sysLog.setIp(request.getRemoteAddr());
         sysLog.setHttpMethod(request.getMethod());

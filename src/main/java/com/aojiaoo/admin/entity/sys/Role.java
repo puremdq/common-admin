@@ -17,6 +17,12 @@ public class Role extends BaseEntity<Role> {
     }
 
     /**
+     * 英文名，唯一
+     * 表字段： sys_role.en_name
+     */
+    @TableField(value = "en_name")
+    private String enName;
+    /**
      * 表字段： sys_role.name
      */
     @TableField(value = "name")

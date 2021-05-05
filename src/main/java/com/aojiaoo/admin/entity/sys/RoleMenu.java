@@ -26,9 +26,9 @@ public class RoleMenu extends BaseEntity<RoleMenu> {
     @TableField(value = "role_id")
     private Integer roleId;
     /**
-     * 表字段： sys_role_menu.rmenu_id
+     * 表字段： sys_role_menu.menu_id
      */
-    @TableField(value = "rmenu_id")
-    private Integer rmenuId;
+    @TableField(value = "menu_id")
+    private Integer menuId;
 
 }

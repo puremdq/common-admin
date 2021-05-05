@@ -7,11 +7,11 @@
         a
         .
         id
-        as id,a.name as name,a.create_time as createTime,a.update_time as updateTime,a.create_by as createBy,a.update_by as updateBy,a.is_delete as isDelete,a.version as version
+        as id,a.en_name as enName,a.name as name,a.create_time as createTime,a.update_time as updateTime,a.create_by as createBy,a.update_by as updateBy,a.is_delete as isDelete,a.version as version
     </sql>
 
     <sql id="Base_select_table">
-        role
+        sys_role
         a
     </sql>
 
