@@ -22,7 +22,7 @@ public class ExceptionHandler implements HandlerExceptionResolver {
     @Override
     public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler,
                                          Exception ex) {
-        log.error("error",ex);
+        log.error("error", ex);
         ModelAndView modelAndView = new ModelAndView(new MappingJackson2JsonView());
         if (ex instanceof CommonAdminException) {
             CommonResponseMsg responseMsg = ((CommonAdminException) ex).getResponseMsg();
