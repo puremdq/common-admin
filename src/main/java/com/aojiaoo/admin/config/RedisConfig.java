@@ -2,7 +2,12 @@ package com.aojiaoo.admin.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.CacheManager;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.cache.RedisCacheConfiguration;
+import org.springframework.data.redis.cache.RedisCacheManager;
+import org.springframework.data.redis.cache.RedisCacheWriter;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisPassword;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
@@ -10,10 +15,12 @@ import org.springframework.data.redis.connection.jedis.JedisClientConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import redis.clients.jedis.JedisPoolConfig;
 
 import javax.annotation.PostConstruct;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,36 +64,19 @@ public class RedisConfig {
         log.info("###### END 初始化 Redis 连接池 END ######");
     }
 
-    public RedisTemplate<Object, Object> redisTemplateObject(Integer dbIndex) {
-        RedisTemplate<Object, Object> redisTemplateObject = new RedisTemplate<>();
-        redisTemplateObject.setConnectionFactory(redisConnectionFactory(jedisPoolConfig(), dbIndex));
-        redisTemplateObject.setKeySerializer(new StringRedisSerializer());
-        redisTemplateObject.setValueSerializer(new GenericJackson2JsonRedisSerializer());
-        redisTemplateObject.afterPropertiesSet();
-        return redisTemplateObject;
+
+    @Bean("redisConnectionFactory")
+    public RedisConnectionFactory redisConnectionFactory() {
+        return redisConnectionFactory(jedisPoolConfig(), 0);
     }
 
-    /**
-     * 连接池配置信息
-     *
-     * @return JedisPoolConfig
-     */
-    public JedisPoolConfig jedisPoolConfig() {
-        JedisPoolConfig poolConfig = new JedisPoolConfig();
-        // 最大连接数
-        poolConfig.setMaxIdle(maxIdl);
-        // 最小空闲连接数
-        poolConfig.setMinIdle(minIdl);
-        poolConfig.setTestOnBorrow(true);
-        poolConfig.setTestOnReturn(true);
-        poolConfig.setTestWhileIdle(true);
-        poolConfig.setNumTestsPerEvictionRun(10);
-        poolConfig.setTimeBetweenEvictionRunsMillis(60000);
-        // 当池内没有可用的连接时，最大等待时间
-        poolConfig.setMaxWaitMillis(10000);
-        // ------其他属性根据需要自行添加-------------
-        return poolConfig;
+
+    @Bean("redisTemplate")
+    public RedisTemplate<Object, Object> getRedisTemplate() {
+        return redisTemplateMap.get(DEFAULT_DB);
     }
+
+
 
     /**
      * jedis连接工厂
@@ -122,8 +112,36 @@ public class RedisConfig {
         return redisTemplateMap.get(db);
     }
 
-    public RedisTemplate<Object, Object> getRedisTemplate() {
-        return redisTemplateMap.get(DEFAULT_DB);
+    /**
+     * 连接池配置信息
+     *
+     * @return JedisPoolConfig
+     */
+    private JedisPoolConfig jedisPoolConfig() {
+        JedisPoolConfig poolConfig = new JedisPoolConfig();
+        // 最大连接数
+        poolConfig.setMaxIdle(maxIdl);
+        // 最小空闲连接数
+        poolConfig.setMinIdle(minIdl);
+        poolConfig.setTestOnBorrow(true);
+        poolConfig.setTestOnReturn(true);
+        poolConfig.setTestWhileIdle(true);
+        poolConfig.setNumTestsPerEvictionRun(10);
+        poolConfig.setTimeBetweenEvictionRunsMillis(60000);
+        // 当池内没有可用的连接时，最大等待时间
+        poolConfig.setMaxWaitMillis(10000);
+        // ------其他属性根据需要自行添加-------------
+        return poolConfig;
     }
+
+    private RedisTemplate<Object, Object> redisTemplateObject(Integer dbIndex) {
+        RedisTemplate<Object, Object> redisTemplateObject = new RedisTemplate<>();
+        redisTemplateObject.setConnectionFactory(redisConnectionFactory(jedisPoolConfig(), dbIndex));
+        redisTemplateObject.setKeySerializer(new StringRedisSerializer());
+        redisTemplateObject.setValueSerializer(new GenericJackson2JsonRedisSerializer());
+        redisTemplateObject.afterPropertiesSet();
+        return redisTemplateObject;
+    }
+
 }
 
