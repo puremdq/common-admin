@@ -1,4 +1,4 @@
-package com.aojiaoo.admin.permission;
+package com.aojiaoo.admin.config.permission;
 
 import org.springframework.core.NamedInheritableThreadLocal;
 
@@ -6,14 +6,14 @@ import org.springframework.core.NamedInheritableThreadLocal;
  * @author pure
  */
 public class PermissionHolder {
-    private static final ThreadLocal<CurrentUser> currentUserHolder =
+    private static final ThreadLocal<CurrentUser> CURRENT_USER_HOLDER =
             new NamedInheritableThreadLocal<>("currentUserHolder");
 
     public static CurrentUser getCurrentUser() {
-        return currentUserHolder.get();
+        return CURRENT_USER_HOLDER.get();
     }
 
     public static void setCurrentUser(CurrentUser currentUser) {
-        currentUserHolder.set(currentUser);
+        CURRENT_USER_HOLDER.set(currentUser);
     }
 }

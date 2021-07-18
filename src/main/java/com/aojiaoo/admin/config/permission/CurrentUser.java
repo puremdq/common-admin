@@ -1,4 +1,4 @@
-package com.aojiaoo.admin.permission;
+package com.aojiaoo.admin.config.permission;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

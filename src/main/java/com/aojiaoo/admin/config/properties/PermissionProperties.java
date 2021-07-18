@@ -1,4 +1,4 @@
-package com.aojiaoo.admin.permission;
+package com.aojiaoo.admin.config.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

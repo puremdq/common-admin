@@ -1,8 +1,8 @@
-package com.aojiaoo.admin.config.login;
+package com.aojiaoo.admin.config.permission.login;
 
 
-import com.aojiaoo.admin.permission.LoginInterceptor;
-import com.aojiaoo.admin.permission.PermissionProperties;
+import com.aojiaoo.admin.config.permission.LoginInterceptor;
+import com.aojiaoo.admin.config.properties.PermissionProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

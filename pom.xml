@@ -3,12 +3,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.3</version>
+        <groupId>com.aojiaoo</groupId>
+        <artifactId>aojiaoo-base</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.aojiaoo</groupId>
     <artifactId>common-admin</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <name>common-admin</name>
@@ -45,7 +44,7 @@
             <groupId>com.aojiaoo</groupId>
             <artifactId>aojiaoo-generator</artifactId>
             <version>${aojiaoo.version}</version>
-<!--            <scope>provided</scope>-->
+            <!--            <scope>provided</scope>-->
         </dependency>
 
         <!--start spring-session-->
@@ -98,14 +97,12 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.4.2</version>
         </dependency>
 
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
-
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -119,10 +116,14 @@
 
         <!-- ehcache -->
         <dependency>
-            <groupId>net.sf.ehcache</groupId>
+            <groupId>org.ehcache</groupId>
             <artifactId>ehcache</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>javax.cache</groupId>
+            <artifactId>cache-api</artifactId>
+        </dependency>
 
         <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
         <dependency>
@@ -130,7 +131,6 @@
             <artifactId>jedis</artifactId>
             <version>3.5.2</version>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -191,7 +191,6 @@
                     </execution>
                 </executions>
             </plugin>
-
 
         </plugins>
     </build>

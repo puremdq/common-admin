@@ -1,4 +1,4 @@
-package com.aojiaoo.admin.permission;
+package com.aojiaoo.admin.config.permission;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

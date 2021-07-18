@@ -1,13 +1,9 @@
 package com.aojiaoo.admin.config;
 
+import com.aojiaoo.admin.config.properties.RedisProperties;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cache.CacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.cache.RedisCacheConfiguration;
-import org.springframework.data.redis.cache.RedisCacheManager;
-import org.springframework.data.redis.cache.RedisCacheWriter;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisPassword;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
@@ -15,14 +11,12 @@ import org.springframework.data.redis.connection.jedis.JedisClientConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import redis.clients.jedis.JedisPoolConfig;
 
 import javax.annotation.PostConstruct;
-import java.time.Duration;
+import javax.annotation.Resource;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,32 +26,33 @@ import java.util.Map;
 @Slf4j
 public class RedisConfig {
 
-    @Value("${redis.host}")
-    private String hostName;
-    @Value("${redis.port}")
-    private int port;
-    @Value("${redis.password}")
-    private String passWord;
-    @Value("${redis.maxIdle}")
-    private int maxIdl;
-    @Value("${redis.minIdle}")
-    private int minIdl;
-
-    @Value("${redis.timeout}")
-    private int timeout;
-
-    private static final int DEFAULT_DB = 0;
-
-    @Value("${redis.dbs}")
-    private List<Integer> dbs;
-
+    //    @Value("${redis.host}")
+//    private String hostName;
+//    @Value("${redis.port}")
+//    private int port;
+//    @Value("${redis.password}")
+//    private String passWord;
+//    @Value("${redis.maxIdle}")
+//    private int maxIdl;
+//    @Value("${redis.minIdle}")
+//    private int minIdl;
+//
+//    @Value("${redis.timeout}")
+//    private int timeout;
+//
+//    private static final int DEFAULT_DB = 0;
+//
+//    @Value("${redis.dbs}")
+//    private List<Integer> dbs;
+    @Resource
+    private RedisProperties redisProperties;
 
     public static Map<Integer, RedisTemplate<Object, Object>> redisTemplateMap = new HashMap<>();
 
     @PostConstruct
     public void initRedisTemp() {
         log.info("###### START 初始化 Redis 连接池 START ######");
-        for (Integer db : dbs) {
+        for (Integer db : redisProperties.getDbs()) {
             log.info("###### 正在加载Redis-db-" + db + " ######");
             redisTemplateMap.put(db, redisTemplateObject(db));
         }
@@ -67,15 +62,14 @@ public class RedisConfig {
 
     @Bean("redisConnectionFactory")
     public RedisConnectionFactory redisConnectionFactory() {
-        return redisConnectionFactory(jedisPoolConfig(), 0);
+        return redisConnectionFactory(jedisPoolConfig(), redisProperties.getDefaultDb());
     }
 
 
     @Bean("redisTemplate")
     public RedisTemplate<Object, Object> getRedisTemplate() {
-        return redisTemplateMap.get(DEFAULT_DB);
+        return redisTemplateMap.get(redisProperties.getDefaultDb());
     }
-
 
 
     /**
@@ -88,13 +82,13 @@ public class RedisConfig {
         // 单机版jedis
         RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration();
         // 设置redis服务器的host或者ip地址
-        redisStandaloneConfiguration.setHostName(hostName);
+        redisStandaloneConfiguration.setHostName(redisProperties.getHost());
         // 设置默认使用的数据库
         redisStandaloneConfiguration.setDatabase(db);
         // 设置密码
-        redisStandaloneConfiguration.setPassword(RedisPassword.of(passWord));
+        redisStandaloneConfiguration.setPassword(RedisPassword.of(redisProperties.getPassWord()));
         // 设置redis的服务的端口号
-        redisStandaloneConfiguration.setPort(port);
+        redisStandaloneConfiguration.setPort(redisProperties.getPort());
 
         // 获得默认的连接池构造器(怎么设计的，为什么不抽象出单独类，供用户使用呢)
         JedisClientConfiguration.JedisPoolingClientConfigurationBuilder jpcb = (JedisClientConfiguration.JedisPoolingClientConfigurationBuilder) JedisClientConfiguration
@@ -120,9 +114,9 @@ public class RedisConfig {
     private JedisPoolConfig jedisPoolConfig() {
         JedisPoolConfig poolConfig = new JedisPoolConfig();
         // 最大连接数
-        poolConfig.setMaxIdle(maxIdl);
+        poolConfig.setMaxIdle(redisProperties.getMaxIdle());
         // 最小空闲连接数
-        poolConfig.setMinIdle(minIdl);
+        poolConfig.setMinIdle(redisProperties.getMinIdle());
         poolConfig.setTestOnBorrow(true);
         poolConfig.setTestOnReturn(true);
         poolConfig.setTestWhileIdle(true);

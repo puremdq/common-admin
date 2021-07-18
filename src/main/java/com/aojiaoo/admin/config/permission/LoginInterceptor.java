@@ -1,9 +1,6 @@
-package com.aojiaoo.admin.permission;
+package com.aojiaoo.admin.config.permission;
 
 
-import com.aojiaoo.admin.exception.CommonAdminException;
-import com.aojiaoo.admin.util.SpringContextUtil;
-import com.aojiaoo.common.response.CommonResponseMsg;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -32,28 +29,29 @@ public class LoginInterceptor<T extends PermissionHandler> implements HandlerInt
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
+        return true;
 
-        PermissionProperties permissionProperties = SpringContextUtil.getBean(PermissionProperties.class);
-
-        String uri = request.getRequestURI();
-
-        if (uri.equals(permissionProperties.getLoginPath())) {
-            permissionHandler.login(request, response);
-            return false;
-        }
-
-        if (uri.equals(permissionProperties.getLogoutPath())) {
-            permissionHandler.logout(request, response);
-            return false;
-        }
-
-        CurrentUser currentUser = permissionHandler.getCurrentUser(request);
-        if (currentUser != null) {
-            PermissionHolder.setCurrentUser(currentUser);
-            return true;
-        }
-
-        throw new CommonAdminException(CommonResponseMsg.NEED_LOGIN);
+//        PermissionProperties permissionProperties = SpringContextUtil.getBean(PermissionProperties.class);
+//
+//        String uri = request.getRequestURI();
+//
+//        if (uri.equals(permissionProperties.getLoginPath())) {
+//            permissionHandler.login(request, response);
+//            return false;
+//        }
+//
+//        if (uri.equals(permissionProperties.getLogoutPath())) {
+//            permissionHandler.logout(request, response);
+//            return false;
+//        }
+//
+//        CurrentUser currentUser = permissionHandler.getCurrentUser(request);
+//        if (currentUser != null) {
+//            PermissionHolder.setCurrentUser(currentUser);
+//            return true;
+//        }
+//
+//        throw new CommonAdminException(CommonResponseMsg.NEED_LOGIN);
     }
 
     /**

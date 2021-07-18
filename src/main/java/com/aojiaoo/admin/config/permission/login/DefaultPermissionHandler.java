@@ -1,12 +1,12 @@
-package com.aojiaoo.admin.config.login;
+package com.aojiaoo.admin.config.permission.login;
 
 import com.aojiaoo.admin.common.ResponseMsg;
 import com.aojiaoo.admin.common.enums.LogType;
 import com.aojiaoo.admin.entity.sys.User;
 import com.aojiaoo.admin.entity.sys.UserRole;
 import com.aojiaoo.admin.exception.CommonAdminException;
-import com.aojiaoo.admin.permission.CurrentUser;
-import com.aojiaoo.admin.permission.PermissionHandler;
+import com.aojiaoo.admin.config.permission.CurrentUser;
+import com.aojiaoo.admin.config.permission.PermissionHandler;
 import com.aojiaoo.admin.service.sys.LogService;
 import com.aojiaoo.admin.service.sys.UserService;
 import com.aojiaoo.common.response.ServerResponse;
